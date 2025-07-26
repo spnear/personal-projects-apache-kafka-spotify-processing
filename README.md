@@ -208,7 +208,7 @@ docker exec kafka-broker kafka-broker-api-versions --bootstrap-server localhost:
 ## Estructura del Proyecto
 
 ```
-proyecto_kafka/
+directory/
 ├── docker-compose.yml      # Configuración de servicios
 ├── Dockerfile             # Imagen personalizada de Kafka
 └── README.md              # Esta documentación
