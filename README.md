@@ -154,13 +154,17 @@ El productor de Spotify implementa varios patrones de diseño:
 
 ```
 src/
-├── __init__.py              # Inicialización del paquete
-├── config.py               # Configuración usando Singleton
-├── models.py               # Modelos de datos con Pydantic
-├── spotify_client.py       # Cliente de Spotify API con Strategy
-├── kafka_producer.py       # Productor de Kafka con Observer
-├── producer_orchestrator.py # Orquestador principal con Command
-└── main.py                 # Aplicación principal
+├── __init__.py                      # Inicialización del paquete principal
+├── kafka_producer_spotify/         # Productor de Spotify
+│   ├── __init__.py                 # Inicialización del productor
+│   ├── config.py                   # Configuración usando Singleton
+│   ├── models.py                   # Modelos de datos con Pydantic
+│   ├── spotify_client.py           # Cliente de Spotify API con Strategy
+│   ├── kafka_producer.py           # Productor de Kafka con Observer
+│   ├── producer_orchestrator.py    # Orquestador principal con Command
+│   └── main.py                     # Aplicación principal
+└── kafka_consumer_spotify/         # Consumidor de Spotify (futuro)
+    └── __init__.py                 # Inicialización del consumidor
 ```
 
 ## Interfaces Web
@@ -271,21 +275,25 @@ docker exec kafka-broker kafka-broker-api-versions --bootstrap-server localhost:
 
 ```
 personal-projects-apache-kafka-spotify-processing/
-├── docker-compose.yml      # Configuración de servicios
-├── Dockerfile             # Imagen personalizada de Kafka
-├── requirements.txt       # Dependencias de Python
-├── .env.example          # Ejemplo de variables de entorno
-├── run_producer.py       # Script de ejecución
-├── src/                  # Código fuente del productor
-│   ├── __init__.py
-│   ├── config.py
-│   ├── models.py
-│   ├── spotify_client.py
-│   ├── kafka_producer.py
-│   ├── producer_orchestrator.py
-│   └── main.py
-├── logs/                 # Logs de la aplicación
-└── README.md            # Esta documentación
+├── docker-compose.yml              # Configuración de servicios
+├── Dockerfile                     # Imagen personalizada de Kafka
+├── requirements.txt               # Dependencias de Python
+├── .env.example                  # Ejemplo de variables de entorno
+├── run_producer.py               # Script de ejecución del productor
+├── src/                          # Código fuente
+│   ├── __init__.py              # Inicialización del paquete principal
+│   ├── kafka_producer_spotify/   # Productor de Spotify
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   ├── models.py
+│   │   ├── spotify_client.py
+│   │   ├── kafka_producer.py
+│   │   ├── producer_orchestrator.py
+│   │   └── main.py
+│   └── kafka_consumer_spotify/   # Consumidor de Spotify (futuro)
+│       └── __init__.py
+├── logs/                         # Logs de la aplicación
+└── README.md                     # Esta documentación
 ```
 
 ## Notas
